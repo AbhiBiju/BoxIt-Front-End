@@ -1,12 +1,6 @@
 /*
   This example requires Tailwind CSS v2.0+ 
   
-<<<<<<< HEAD
-  This example requires some changes to your config:
-=======
-  //This example requires some changes to your config:
->>>>>>> 812eb7bb398abf797d13e04038e8266086689d6c
-  
   ```
   // tailwind.config.js
   module.exports = {
