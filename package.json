@@ -1,5 +1,5 @@
 {
-  "name": "nextstarterauth",
+  "name": "boxit-front-end",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,6 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.2.0",
+    "@headlessui/react": "^1.4.2",
+    "@heroicons/react": "^1.0.5",
     "autoprefixer": "^10.2.5",
     "next": "^10.0.8",
     "postcss": "^8.2.8",
