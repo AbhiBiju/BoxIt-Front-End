@@ -2,7 +2,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
-
 import {
   BookmarkAltIcon,
   CalendarIcon,
@@ -17,7 +16,6 @@ import {
   ViewGridIcon,
   XIcon,
 } from "@heroicons/react/outline";
-
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
 const features = [
@@ -74,7 +72,6 @@ const resources = [
   },
   { name: "Security", description: "Understand how we take your privacy seriously.", href: "#", icon: ShieldCheckIcon },
 ];
-
 const recentPosts = [
   { id: 1, name: "Boost your conversion rate", href: "#" },
   { id: 2, name: "How to use search engine optimization to drive traffic to your site", href: "#" },
@@ -89,7 +86,7 @@ const Index = () => {
   return (
     <div className="">
       <Head>
-        <title>BoxIt Mern App</title>
+        <title>NextJS Starter</title>
       </Head>
       <div className="relative bg-gray-50">
         <Popover className="relative bg-white shadow">
@@ -262,14 +259,12 @@ const Index = () => {
                 <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
                   Sign in
                 </a>
-                <Link href="/signup">
-                  <a
-                    href="#"
-                    className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                  >
-                    Sign up
-                  </a>
-                </Link>
+                <a
+                  href="#"
+                  className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                >
+                  Sign up
+                </a>
               </div>
             </div>
           </div>
@@ -362,7 +357,7 @@ const Index = () => {
           <div className="mx-auto max-w-7xl w-full pt-16 pb-20 text-center lg:py-48 lg:text-left">
             <div className="px-4 lg:w-1/2 sm:px-8 xl:pr-16">
               <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
-                <span className="block text-green-500 xl:inline">Data to enrich your</span>{" "}
+                <span className="block xl:inline">Data to enrich your</span>{" "}
                 <span className="block text-indigo-600 xl:inline">online business</span>
               </h1>
               <p className="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
