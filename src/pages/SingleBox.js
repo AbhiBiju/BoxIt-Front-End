@@ -61,7 +61,7 @@ export default function Example() {
 
   return (
 
-    <nav class="bg-white shadow-lg">
+   
 		<div class="max-w-6xl mx-auto px-4">
 			<div class="flex justify-between">
 				<div class="flex space-x-7">
@@ -100,7 +100,7 @@ export default function Example() {
 				</div>
 			</div>
 		</div>
-	</nav>
+
   ),
 
 
