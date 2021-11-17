@@ -79,17 +79,17 @@ export default function Example() {
 						<a
 							href=""
 							class="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold "
-							>Home</a
+							>Saved Boxes</a
 						>
 						<a
 							href=""
 							class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
-							>Services</a
+							>Dashboard</a
 						>
 						<a
 							href=""
 							class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
-							>About</a
+							>Create Box</a
 						>
 						<a
 							href=""

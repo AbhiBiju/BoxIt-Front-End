@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.custom-padding {
+    padding-top: 50px
+}
+
+
+
+
+/* On screens that are 1800px or less, set the background color to olive */
+
+@media screen and (max-width: 1500px) {
+    .custom-padding {
+      padding-top: 50px;
+    }
+  }
+  
+  /* On screens that are 900px or less, set the background color to olive */
+  @media screen and (max-width: 900px) {
+    .custom-padding {
+        padding-top: 50px;
+    }
+  }
+  
+  /* On screens that are 500px or less, set the background color to olive */
+  @media screen and (max-width: 640px) {
+    .custom-padding {
+      padding-top: 0px;
+
+    }
+
+    .header-text {
+        width: 75%;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin: auto;
+    }
+  }
