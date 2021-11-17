@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon, ChevronDownIcon } from "@heroicons/react/outline";
 
@@ -18,6 +18,7 @@ import { kebab, formatDate } from "../utils/helpers";
 
 import { useMutation } from "@apollo/client";
 import { ADD_BOX } from "../utils/mutations";
+import auth from "../utils/auth";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -92,6 +93,11 @@ export default function CreateBox() {
 
   const { packingDate, name, description, price, images, isMoving, isFragile, userId } = formState;
 
+  useEffect(() => {
+    const userInfo = auth.getProfile();
+    setFormState({ ...formState, userId: userInfo.data._id });
+  }, []);
+
   const encode = (data) => {
     return Object.keys(data)
       .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
@@ -128,15 +134,20 @@ export default function CreateBox() {
     const boxData = await addBox({
       variables: {
         packingDate: formState.packingDate,
-        name: packingDate.name,
-        description: packingDate.description,
-        images: packingDate.images,
-        isMoving: packingDate.isMoving,
-        isFragile: packingDate.isFragile,
-        price: packingDate.price,
+        name: formState.name,
+        description: formState.description,
+        images: formState.images,
+        isMoving: formState.isMoving,
+        isFragile: formState.isFragile,
+        price: formState.price,
+        userId: formState.userId
       },
-    })
-    
+    });
+
+    if (boxData.data) {
+      setSubmit(true);
+    }
+
     if (!errorMessage) {
       console.log("Submit Form", formState);
     }
