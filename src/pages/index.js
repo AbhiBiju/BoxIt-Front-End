@@ -2,13 +2,10 @@ import Head from "next/head";
 import Link from "next/link";
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
-<<<<<<< HEAD
-=======
 
 const heroImg = "/assets/img/moving-day.jpeg"
 const logoImg = "/assets/img/Logo.png";
 
->>>>>>> 38f65f0c6dc3441a9465f3840abbddb64f45bd5c
 import {
   BookmarkAltIcon,
   CalendarIcon,
@@ -319,15 +316,6 @@ const Index = () => {
               <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
                 {/* <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
                   Sign in
-<<<<<<< HEAD
-                </a>
-                <a
-                  href="#"
-                  className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                >
-                  Sign up
-                </a>
-=======
                 </a> */}
                 <Link href="/create-box">
                   <a
@@ -337,7 +325,6 @@ const Index = () => {
                     Create Box
                   </a>
                 </Link>
->>>>>>> 38f65f0c6dc3441a9465f3840abbddb64f45bd5c
               </div>
             </div>
           </div>
@@ -430,13 +417,8 @@ const Index = () => {
           <div className="mx-auto max-w-7xl w-full pt-16 pb-20 text-center lg:py-48 lg:text-left">
             <div className="px-4 lg:w-1/2 sm:px-8 xl:pr-16">
               <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
-<<<<<<< HEAD
-                <span className="block xl:inline">Data to enrich your</span>{" "}
-                <span className="block text-indigo-600 xl:inline">online business</span>
-=======
                 <span className="block text-green-500 xl:inline">Welcome To BoxIt</span>{" "}
                 <span className="block text-indigo-600 xl:inline">Helping you Pack with Clarity!</span>
->>>>>>> 38f65f0c6dc3441a9465f3840abbddb64f45bd5c
               </h1>
               <p className="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
                 Ready To Get Start Packing?
