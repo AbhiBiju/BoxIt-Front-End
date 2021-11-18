@@ -77,11 +77,7 @@ export default function Example() {
     <>
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog
-            as="div"
-            className="fixed inset-0 flex z-40 md:hidden"
-            onClose={setSidebarOpen}
-          >
+          <Dialog as="div" className="fixed inset-0 flex z-40 md:hidden" onClose={setSidebarOpen}>
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -119,19 +115,12 @@ export default function Example() {
                       onClick={() => setSidebarOpen(false)}
                     >
                       <span className="sr-only">Close sidebar</span>
-                      <XIcon
-                        className="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      />
+                      <XIcon className="h-6 w-6 text-white" aria-hidden="true" />
                     </button>
                   </div>
                 </Transition.Child>
                 <div className="flex-shrink-0 flex items-center px-4">
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg"
-                    alt="Workflow"
-                  />
+                  <img className="h-8 w-auto" src="/assets/img/Logo.png" alt="BoxIt" />
                 </div>
                 <div className="mt-5 flex-1 h-0 overflow-y-auto">
                   <nav className="px-2 space-y-1">
@@ -140,16 +129,11 @@ export default function Example() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current
-                            ? "bg-indigo-800 text-white"
-                            : "text-indigo-100 hover:bg-indigo-600",
+                          item.current ? "bg-indigo-800 text-white" : "text-indigo-100 hover:bg-indigo-600",
                           "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                         )}
                       >
-                        <item.icon
-                          className="mr-4 flex-shrink-0 h-6 w-6 text-indigo-300"
-                          aria-hidden="true"
-                        />
+                        <item.icon className="mr-4 flex-shrink-0 h-6 w-6 text-indigo-300" aria-hidden="true" />
                         {item.name}
                       </a>
                     ))}
@@ -168,11 +152,7 @@ export default function Example() {
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex flex-col flex-grow pt-5 bg-indigo-700 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg"
-                alt="Workflow"
-              />
+              <img className="h-8 w-auto" src="/assets/img/Logo.png" alt="BoxIt" />
             </div>
             <div className="mt-5 flex-1 flex flex-col">
               <nav className="flex-1 px-2 pb-4 space-y-1">
@@ -181,16 +161,11 @@ export default function Example() {
                     key={item.name}
                     href={item.href}
                     className={classNames(
-                      item.current
-                        ? "bg-indigo-800 text-white"
-                        : "text-indigo-100 hover:bg-indigo-600",
+                      item.current ? "bg-indigo-800 text-white" : "text-indigo-100 hover:bg-indigo-600",
                       "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                     )}
                   >
-                    <item.icon
-                      className="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"
-                      aria-hidden="true"
-                    />
+                    <item.icon className="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" aria-hidden="true" />
                     {item.name}
                   </a>
                 ))}
@@ -208,125 +183,117 @@ export default function Example() {
                   <div className="lg:grid lg:grid-cols-3 lg:gap-x-8 lg:items-start">
                     {/* Image gallery */}
                     <div>
-                    <Tab.Group as="div" className="flex flex-col-reverse">
-                      {/* Image selector */}
-                      <div className="hidden mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
-                        <Tab.List className="grid grid-cols-3 gap-6">
-                          {product.images.map((image) => (
-                            <Tab
-                              key={image.id}
-                              className="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
-                            >
-                              {({ selected }) => (
-                                <>
-                                  <span className="sr-only">{image.name}</span>
-                                  <span className="absolute inset-0 rounded-md overflow-hidden">
-                                    <img
-                                      src={image.src}
-                                      alt=""
-                                      className="w-full h-full object-center object-cover"
+                      <Tab.Group as="div" className="flex flex-col-reverse">
+                        {/* Image selector */}
+                        <div className="hidden mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
+                          <Tab.List className="grid grid-cols-3 gap-6">
+                            {product.images.map((image) => (
+                              <Tab
+                                key={image.id}
+                                className="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
+                              >
+                                {({ selected }) => (
+                                  <>
+                                    <span className="sr-only">{image.name}</span>
+                                    <span className="absolute inset-0 rounded-md overflow-hidden">
+                                      <img
+                                        src={image.src}
+                                        alt=""
+                                        className="w-full h-full object-center object-cover"
+                                      />
+                                    </span>
+                                    <span
+                                      className={classNames(
+                                        selected ? "ring-gray-500" : "ring-transparent",
+                                        "absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none"
+                                      )}
+                                      aria-hidden="true"
                                     />
-                                  </span>
-                                  <span
-                                    className={classNames(
-                                      selected
-                                        ? "ring-gray-500"
-                                        : "ring-transparent",
-                                      "absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none"
-                                    )}
-                                    aria-hidden="true"
-                                  />
-                                </>
-                              )}
-                            </Tab>
-                          ))}
+                                  </>
+                                )}
+                              </Tab>
+                            ))}
 
-                          {product.images.map((image) => (
-                            <Tab
-                              key={image.id}
-                              className="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
-                            >
-                              {({ selected }) => (
-                                <>
-                                  <span className="sr-only">{image.name}</span>
-                                  <span className="absolute inset-0 rounded-md overflow-hidden">
-                                    <img
-                                      src={image.src}
-                                      alt=""
-                                      className="w-full h-full object-center object-cover"
+                            {product.images.map((image) => (
+                              <Tab
+                                key={image.id}
+                                className="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
+                              >
+                                {({ selected }) => (
+                                  <>
+                                    <span className="sr-only">{image.name}</span>
+                                    <span className="absolute inset-0 rounded-md overflow-hidden">
+                                      <img
+                                        src={image.src}
+                                        alt=""
+                                        className="w-full h-full object-center object-cover"
+                                      />
+                                    </span>
+                                    <span
+                                      className={classNames(
+                                        selected ? "ring-gray-500" : "ring-transparent",
+                                        "absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none"
+                                      )}
+                                      aria-hidden="true"
                                     />
-                                  </span>
-                                  <span
-                                    className={classNames(
-                                      selected
-                                        ? "ring-gray-500"
-                                        : "ring-transparent",
-                                      "absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none"
-                                    )}
-                                    aria-hidden="true"
-                                  />
-                                </>
-                              )}
-                            </Tab>
-                          ))}
+                                  </>
+                                )}
+                              </Tab>
+                            ))}
 
-                          {product.images.map((image) => (
-                            <Tab
-                              key={image.id}
-                              className="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
-                            >
-                              {({ selected }) => (
-                                <>
-                                  <span className="sr-only">{image.name}</span>
-                                  <span className="absolute inset-0 rounded-md overflow-hidden">
-                                    <img
-                                      src={image.src}
-                                      alt=""
-                                      className="w-full h-full object-center object-cover"
+                            {product.images.map((image) => (
+                              <Tab
+                                key={image.id}
+                                className="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
+                              >
+                                {({ selected }) => (
+                                  <>
+                                    <span className="sr-only">{image.name}</span>
+                                    <span className="absolute inset-0 rounded-md overflow-hidden">
+                                      <img
+                                        src={image.src}
+                                        alt=""
+                                        className="w-full h-full object-center object-cover"
+                                      />
+                                    </span>
+                                    <span
+                                      className={classNames(
+                                        selected ? "ring-gray-500" : "ring-transparent",
+                                        "absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none"
+                                      )}
+                                      aria-hidden="true"
                                     />
-                                  </span>
-                                  <span
-                                    className={classNames(
-                                      selected
-                                        ? "ring-gray-500"
-                                        : "ring-transparent",
-                                      "absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none"
-                                    )}
-                                    aria-hidden="true"
-                                  />
-                                </>
-                              )}
-                            </Tab>
-                          ))}
-                        </Tab.List>
-                      </div>
+                                  </>
+                                )}
+                              </Tab>
+                            ))}
+                          </Tab.List>
+                        </div>
 
-                      <Tab.Panels className="w-full aspect-w-1 aspect-h-1">
-                        {product.images.map((image) => (
-                          <Tab.Panel key={image.id}>
-                            <img
-                              src={image.src}
-                              alt={image.alt}
-                              className="w-full h-full object-center object-cover sm:rounded-lg"
-                            />
-                          </Tab.Panel>
-                        ))}
-                      </Tab.Panels>
-                    </Tab.Group>
-                    <button className="bg-purple-500 text-white py-2 px-5 rounded-md mx-auto mt-10 block">Edit Images</button>
+                        <Tab.Panels className="w-full aspect-w-1 aspect-h-1">
+                          {product.images.map((image) => (
+                            <Tab.Panel key={image.id}>
+                              <img
+                                src={image.src}
+                                alt={image.alt}
+                                className="w-full h-full object-center object-cover sm:rounded-lg"
+                              />
+                            </Tab.Panel>
+                          ))}
+                        </Tab.Panels>
+                      </Tab.Group>
+                      <button className="bg-purple-500 text-white py-2 px-5 rounded-md mx-auto mt-10 block">
+                        Edit Images
+                      </button>
                     </div>
 
                     {/* Product info */}
                     <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
-                      <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">
-                        {product.name}
-                      </h1>
+                      <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">{product.name}</h1>
 
                       <div className="mt-3">
                         <h2 className="sr-only">Product information</h2>
-                        <p className="text-3xl text-gray-900">
-                          {product.price}
-                        </p>
+                        <p className="text-3xl text-gray-900">{product.price}</p>
                       </div>
 
                       {/* Reviews */}
@@ -356,18 +323,13 @@ export default function Example() {
                         </div>
                       </form>
 
-                      <section
-                        aria-labelledby="details-heading"
-                        className="mt-12"
-                      >
+                      <section aria-labelledby="details-heading" className="mt-12">
                         <h2 id="details-heading" className="sr-only">
                           Additional details
                         </h2>
 
                         <div className="border-t divide-y divide-gray-200">
-                          <h3 className="text-center text-lg mt-2 mb-8 font-bold">
-                            Edit Box Content
-                          </h3>
+                          <h3 className="text-center text-lg mt-2 mb-8 font-bold">Edit Box Content</h3>
                           <div className="rounded-md border border-gray-50 h-16 w-full mt-2"></div>
                           <div className="rounded-md border border-gray-50 h-16 w-full mt-2"></div>
                           <div className="rounded-md border border-gray-50 h-16 w-full mt-2"></div>

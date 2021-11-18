@@ -1,148 +1,105 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-import { Fragment, useState } from 'react'
-import Sidebar from '../components/sidebar'
-import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
-import { MenuIcon, SearchIcon, ShoppingCartIcon, UserIcon, XIcon } from '@heroicons/react/outline'
+import { Fragment, useEffect, useState } from "react";
+import Sidebar from "../components/sidebar";
+import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
+import { MenuIcon, SearchIcon, ShoppingCartIcon, UserIcon, XIcon } from "@heroicons/react/outline";
 
-// const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
 const navigation = {
   categories: [
     {
-      name: 'Women',
+      name: "Women",
       featured: [
-        { name: 'Sleep', href: '#' },
-        { name: 'Swimwear', href: '#' },
-        { name: 'Underwear', href: '#' },
+        { name: "Sleep", href: "#" },
+        { name: "Swimwear", href: "#" },
+        { name: "Underwear", href: "#" },
       ],
       collection: [
-        { name: 'Everything', href: '#' },
-        { name: 'Core', href: '#' },
-        { name: 'New Arrivals', href: '#' },
-        { name: 'Sale', href: '#' },
+        { name: "Everything", href: "#" },
+        { name: "Core", href: "#" },
+        { name: "New Arrivals", href: "#" },
+        { name: "Sale", href: "#" },
       ],
       categories: [
-        { name: 'Basic Tees', href: '#' },
-        { name: 'Artwork Tees', href: '#' },
-        { name: 'Bottoms', href: '#' },
-        { name: 'Underwear', href: '#' },
-        { name: 'Accessories', href: '#' },
+        { name: "Basic Tees", href: "#" },
+        { name: "Artwork Tees", href: "#" },
+        { name: "Bottoms", href: "#" },
+        { name: "Underwear", href: "#" },
+        { name: "Accessories", href: "#" },
       ],
       brands: [
-        { name: 'Full Nelson', href: '#' },
-        { name: 'My Way', href: '#' },
-        { name: 'Re-Arranged', href: '#' },
-        { name: 'Counterfeit', href: '#' },
-        { name: 'Significant Other', href: '#' },
+        { name: "Full Nelson", href: "#" },
+        { name: "My Way", href: "#" },
+        { name: "Re-Arranged", href: "#" },
+        { name: "Counterfeit", href: "#" },
+        { name: "Significant Other", href: "#" },
       ],
     },
     {
-      name: 'Men',
+      name: "Men",
       featured: [
-        { name: 'Casual', href: '#' },
-        { name: 'Boxers', href: '#' },
-        { name: 'Outdoor', href: '#' },
+        { name: "Casual", href: "#" },
+        { name: "Boxers", href: "#" },
+        { name: "Outdoor", href: "#" },
       ],
       collection: [
-        { name: 'Everything', href: '#' },
-        { name: 'Core', href: '#' },
-        { name: 'New Arrivals', href: '#' },
-        { name: 'Sale', href: '#' },
+        { name: "Everything", href: "#" },
+        { name: "Core", href: "#" },
+        { name: "New Arrivals", href: "#" },
+        { name: "Sale", href: "#" },
       ],
       categories: [
-        { name: 'Artwork Tees', href: '#' },
-        { name: 'Pants', href: '#' },
-        { name: 'Accessories', href: '#' },
-        { name: 'Boxers', href: '#' },
-        { name: 'Basic Tees', href: '#' },
+        { name: "Artwork Tees", href: "#" },
+        { name: "Pants", href: "#" },
+        { name: "Accessories", href: "#" },
+        { name: "Boxers", href: "#" },
+        { name: "Basic Tees", href: "#" },
       ],
       brands: [
-        { name: 'Significant Other', href: '#' },
-        { name: 'My Way', href: '#' },
-        { name: 'Counterfeit', href: '#' },
-        { name: 'Re-Arranged', href: '#' },
-        { name: 'Full Nelson', href: '#' },
+        { name: "Significant Other", href: "#" },
+        { name: "My Way", href: "#" },
+        { name: "Counterfeit", href: "#" },
+        { name: "Re-Arranged", href: "#" },
+        { name: "Full Nelson", href: "#" },
       ],
     },
   ],
   pages: [
-    { name: 'Company', href: '#' },
-    { name: 'Stores', href: '#' },
+    { name: "Company", href: "#" },
+    { name: "Stores", href: "#" },
   ],
-}
-const orders = [
-  {
-    number: '4376',
-    status: 'Delivered on January 22, 2021',
-    href: '#',
-    invoiceHref: '#',
-    products: [
-      {
-        id: 1,
-        name: 'Machined Brass Puzzle',
-        href: '#',
-        price: '$95.00',
-        color: 'Brass',
-        size: '3" x 3" x 3"',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/order-history-page-07-product-01.jpg',
-        imageAlt: 'Brass puzzle in the shape of a jack with overlapping rounded posts.',
-      },
-      // More products...
-    ],
-  },
-  // More orders...
-]
-const footerNavigation = {
-  account: [
-    { name: 'Manage Account', href: '#' },
-    { name: 'Saved Items', href: '#' },
-    { name: 'Orders', href: '#' },
-    { name: 'Redeem Gift card', href: '#' },
-  ],
-  service: [
-    { name: 'Shipping & Returns', href: '#' },
-    { name: 'Warranty', href: '#' },
-    { name: 'FAQ', href: '#' },
-    { name: 'Find a store', href: '#' },
-    { name: 'Get in touch', href: '#' },
-  ],
-  company: [
-    { name: 'Who we are', href: '#' },
-    { name: 'Press', href: '#' },
-    { name: 'Careers', href: '#' },
-    { name: 'Terms & Conditions', href: '#' },
-    { name: 'Privacy', href: '#' },
-  ],
-  connect: [
-    { name: 'Instagram', href: '#' },
-    { name: 'Pinterest', href: '#' },
-    { name: 'Twitter', href: '#' },
-  ],
-}
+};
+
+/* Getting Box Info */
+import { useLazyQuery } from "@apollo/client";
+import { QUERY_BOXES } from "../utils/queries";
+import auth from "../utils/auth";
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Example() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const [boxes, setBoxes] = useState([]);
+  const user = auth.getProfile();
+  const [id, setId] = useState("");
+  const [getUserBoxes, { data, loading }] = useLazyQuery(QUERY_BOXES);
+
+  const handleClick = () => {
+    let userId = user.data._id;
+    setId(userId);
+
+    getUserBoxes({ variables: { userId: id } });
+    if (data) {
+      setBoxes(data.getUserBoxes);
+    }
+  };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white h-full w-full grid grid-cols-10">
+      <div className="float-left mr-5 col-span-2 h-full hidden lg:flex lg:flex-shrink-0">
+        <Sidebar user={user} />
+      </div>
       {/* Mobile menu */}
       <Transition.Root show={mobileMenuOpen} as={Fragment}>
         <Dialog as="div" className="fixed inset-0 flex z-40 lg:hidden" onClose={setMobileMenuOpen}>
@@ -188,8 +145,8 @@ export default function Example() {
                         key={category.name}
                         className={({ selected }) =>
                           classNames(
-                            selected ? 'text-indigo-600 border-indigo-600' : 'text-gray-900 border-transparent',
-                            'flex-1 whitespace-nowrap py-4 px-1 border-b-2 text-base font-medium'
+                            selected ? "text-indigo-600 border-indigo-600" : "text-gray-900 border-transparent",
+                            "flex-1 whitespace-nowrap py-4 px-1 border-b-2 text-base font-medium"
                           )
                         }
                       >
@@ -339,193 +296,116 @@ export default function Example() {
         </Dialog>
       </Transition.Root>
 
-      <header className="relative">
-        <nav aria-label="Top">
-          {/* Top navigation */}
-          
-          {/* Secondary navigation */}
-          <div className="bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="border-b border-gray-200">
-                <div className="h-16 flex items-center justify-between">
-                  {/* Logo (lg+) */}
-                  
+      {/* <header className="relative">TODO: Add Navbar Component Here</header> */}
 
-                  <div className="hidden h-full lg:flex">
-                    {/* Mega menus */}
-                    
+      <main className="content-center col-span-10 lg:col-span-8">
+        <section className="mx-auto text-center w-full">
+          <h1
+            onClick={handleClick}
+            className="text-2xl w-1/2 mt-5 mx-auto py-5 cursor-pointer font-bold text-gray-900 rounded-lg bg-green-100 transform transition duration-200 hover:scale-105 hover:bg-green-300"
+          >
+            Load Saved Boxes
+          </h1>
+        </section>
+        <div className="">
+          {boxes &&
+            boxes.map((box) => (
+              <div className="flow-root">
+                <div key={box._id} className="py-0 sm:flex">
+                  <div className="flex space-x-4 sm:min-w-0 sm:flex-1 sm:space-x-6 lg:space-x-8">
+                    <div className="grid grid-cols-2 grid-rows-2 gap-4">
+                      {box.images.map((imageUrl) =>
+                        imageUrl.split(":")[0] === "http" ? (
+                          <img
+                            src={imageUrl}
+                            alt="box-img"
+                            className="flex-none w16 h-16 transform hover:scale-105 transition duration-200 rounded-md object-center object-cover"
+                          />
+                        ) : (
+                          <li>{imageUrl}</li>
+                        )
+                      )}
+                    </div>
+                    <div className="pt-1.5 min-w-0 flex-1 sm:pt-0">
+                      {
+                        <h3 className="text-md font-medium text-gray-900">
+                          <a href={"/box/" + box._id}>{box.name}</a>
+                          <p>{box.packingDate}</p>
+                        </h3>
+                      }
+                      <p className="text-md text-gray-500 truncate">
+                        <span>{box.description}</span>{" "}
+                        <span className="mx-1 text-gray-400" aria-hidden="true">
+                          &middot;
+                        </span>{" "}
+                        <span>{box.isFragile === true ? "Fragile Box" : ""}</span>
+                      </p>
+                      <p className="mt-1 font-medium text-gray-900">{box.price}</p>
+                    </div>
                   </div>
-
-                
-
-                  
-
-                  
+                  <div className="mt-6 space-y-4 mx-5 sm:mt-0 sm:ml-6 sm:flex-none sm:w-40">
+                    <button
+                      type="button"
+                      className="w-full mb-5 flex items-center justify-center bg-purple-400 py-2 px-2.5 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-full sm:flex-grow-0"
+                    >
+                      Moving
+                    </button>
+                    <a href={"/box/" + box._id}>
+                      <button
+                        type="button"
+                        className="w-full flex items-center justify-center bg-green-400 py-2 px-2.5 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-full sm:flex-grow-0"
+                      >
+                        More info
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          {(loading || !boxes.length) && (
+            <div className="">
+              <div className="flow-root">
+                <div className="py-0 sm:flex">
+                  <div className="flex space-x-4 sm:min-w-0 sm:flex-1 sm:space-x-6 lg:space-x-8">
+                    <div className="grid grid-cols-2 grid-rows-2 gap-4">
+                      <div className="flex-none w16 h-16 transform hover:scale-105 transition duration-200 rounded-md object-center object-cover bg-gray-400"></div>
+                    </div>
+                    <div className="pt-1.5 min-w-0 flex-1 sm:pt-0">
+                      <h3 className="text-md font-medium text-gray-900">
+                        <a href={"/profile"} className="bg-gray-400 rounded-lg h-2"></a>
+                        <p className="bg-gray-400 rounded-lg h-2"></p>
+                      </h3>
+                      <p className="text-md text-gray-500 truncate">
+                        <span className="bg-gray-400 rounded-lg h-2"></span>{" "}
+                        <span className="mx-1 text-gray-400" aria-hidden="true">
+                          &middot;
+                        </span>{" "}
+                        <span className="bg-gray-400 rounded-lg h-2"></span>
+                      </p>
+                      <p className="mt-1 font-medium text-gray-900"></p>
+                    </div>
+                  </div>
+                  <div className="mt-6 space-y-4 mx-5 sm:mt-0 sm:ml-6 sm:flex-none sm:w-40">
+                    <button
+                      type="button"
+                      className="w-full mb-5 flex items-center justify-center bg-purple-400 py-2 px-2.5 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-full sm:flex-grow-0"
+                    ></button>
+                    <a href={"/profile"}>
+                      <button
+                        type="button"
+                        className="w-full flex items-center justify-center bg-green-400 py-2 px-2.5 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-full sm:flex-grow-0"
+                      ></button>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </nav>
-      </header>
-
-    <section className="w-96 text-center">
-      <div className="w-screen">
-          <h1 className="text-2xl font-bold  text-gray-900">Saved Boxes</h1>
-          
+          )}
         </div>
-
-    </section>
-
-      <main className="content-center">
-      <div className="content-center max-h-screen max-w-3xl mx-auto px-4 py-16 sm:px-6 sm:pt-24 sm:pb-32 lg:px-8">
-      
-      <div className="float-left h-full hidden lg:flex lg:flex-shrink-0">
-
-      <Sidebar/>
-
-      </div>  
-
-
-
-       
-
-        <div className="">
-          {orders.map((order) => (
-            <section classname="">
-              
-
-              <div className="flow-root border-t border-gray-200 divide-y divide-gray-200">
-                {order.products.map((product) => (
-                  <div key={product.id} className="py-0 sm:flex">
-                    <div className="flex space-x-4 sm:min-w-0 sm:flex-1 sm:space-x-6 lg:space-x-8">
-                      <img
-                        src={product.imageSrc}
-                        alt={product.imageAlt}
-                        className="flex-none w-20 h-20 rounded-md object-center object-cover sm:w-48 sm:h-48"
-                      />
-                      <div className="pt-1.5 min-w-0 flex-1 sm:pt-0">
-                        <h3 className="text-sm font-medium text-gray-900">
-                          <a href={product.href}>{product.name}</a>
-                        </h3>
-                        <p className="text-sm text-gray-500 truncate">
-                          <span>{product.color}</span>{' '}
-                          <span className="mx-1 text-gray-400" aria-hidden="true">
-                            &middot;
-                          </span>{' '}
-                          <span>{product.size}</span>
-                        </p>
-                        <p className="mt-1 font-medium text-gray-900">{product.price}</p>
-                      </div>
-                    </div>
-                    <div className="mt-6 space-y-4 sm:mt-0 sm:ml-6 sm:flex-none sm:w-40">
-                      <button
-                        type="button"
-                        className="w-full flex items-center justify-center bg-pink-300 py-2 px-2.5 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-full sm:flex-grow-0"
-                      >
-                        Moving
-                      </button>
-                      <button
-                        type="button"
-                        className="w-full flex items-center justify-center bg-purple-300 py-2 px-2.5 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-full sm:flex-grow-0"
-                      >
-                        More info
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 -mb-6 flow-root border-t border-gray-200 divide-y divide-gray-200">
-                {order.products.map((product) => (
-                  <div key={product.id} className="py-6 sm:flex">
-                    <div className="flex space-x-4 sm:min-w-0 sm:flex-1 sm:space-x-6 lg:space-x-8">
-                      <img
-                        src={product.imageSrc}
-                        alt={product.imageAlt}
-                        className="flex-none w-20 h-20 rounded-md object-center object-cover sm:w-48 sm:h-48"
-                      />
-                      <div className="pt-1.5 min-w-0 flex-1 sm:pt-0">
-                        <h3 className="text-sm font-medium text-gray-900">
-                          <a href={product.href}>{product.name}</a>
-                        </h3>
-                        <p className="text-sm text-gray-500 truncate">
-                          <span>{product.color}</span>{' '}
-                          <span className="mx-1 text-gray-400" aria-hidden="true">
-                            &middot;
-                          </span>{' '}
-                          <span>{product.size}</span>
-                        </p>
-                        <p className="mt-1 font-medium text-gray-900">{product.price}</p>
-                      </div>
-                    </div>
-                    <div className="mt-6 space-y-4 sm:mt-0 sm:ml-6 sm:flex-none sm:w-40">
-                      <button
-                        type="button"
-                        className="w-full flex items-center justify-center bg-green-300 py-2 px-2.5 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-full sm:flex-grow-0"
-                      >
-                        Completed
-                      </button>
-                      <button
-                        type="button"
-                        className="w-full flex items-center justify-center bg-purple-300 py-2 px-2.5 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-full sm:flex-grow-0"
-                      >
-                        More info
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 -mb-6 flow-root border-t border-gray-200 divide-y divide-gray-200">
-                {order.products.map((product) => (
-                  <div key={product.id} className="py-6 sm:flex">
-                    <div className="flex space-x-4 sm:min-w-0 sm:flex-1 sm:space-x-6 lg:space-x-8">
-                      <img
-                        src={product.imageSrc}
-                        alt={product.imageAlt}
-                        className="flex-none w-20 h-20 rounded-md object-center object-cover sm:w-48 sm:h-48"
-                      />
-                      <div className="pt-1.5 min-w-0 flex-1 sm:pt-0">
-                        <h3 className="text-sm font-medium text-gray-900">
-                          <a href={product.href}>{product.name}</a>
-                        </h3>
-                        <p className="text-sm text-gray-500 truncate">
-                          <span>{product.color}</span>{' '}
-                          <span className="mx-1 text-gray-400" aria-hidden="true">
-                            &middot;
-                          </span>{' '}
-                          <span>{product.size}</span>
-                        </p>
-                        <p className="mt-1 font-medium text-gray-900">{product.price}</p>
-                      </div>
-                    </div>
-                    <div className="mt-6 space-y-4 sm:mt-0 sm:ml-6 sm:flex-none sm:w-40">
-                      <button
-                        type="button"
-                        className="w-full flex items-center justify-center bg-green-300 py-2 px-2.5 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-full sm:flex-grow-0"
-                      >
-                        Completed
-                      </button>
-                      <button
-                        type="button"
-                        className="w-full flex items-center justify-center bg-purple-300 py-2 px-2.5 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-full sm:flex-grow-0"
-                      >
-                        More info
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              
-            </section>
-          ))}
-        </div>
-    </div>
       </main>
 
-      <footer aria-labelledby="footer-heading" className="bg-white border-t border-gray-200">
-        {/* <h2 id="footer-heading" className="sr-only">
+      {/*  <footer aria-labelledby="footer-heading" className="">
+        <h2 id="footer-heading" className="sr-only">
           Footer
         </h2>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -591,8 +471,8 @@ export default function Example() {
             </div>
             <p className="mt-6 text-sm text-gray-500 text-center sm:mt-0">&copy; 2021 Clothing Company, Ltd.</p>
           </div>
-        </div> */}
-      </footer>
+        </div>
+      </footer> */}
     </div>
-  )
+  );
 }

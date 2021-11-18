@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 
-const heroImg = "/assets/img/moving-day.jpeg"
+const heroImg = "/assets/img/moving-day.jpeg";
 const logoImg = "/assets/img/Logo.png";
 
 import {
@@ -77,45 +77,42 @@ const recentPosts = [
 
 const posts = [
   {
-    title: '',
-    href: '#',
-    category: { name: 'Step 1', href: '#' },
-    description:
-      ' Gather Items ',
-    date: '',
-    datetime: '',
+    title: "",
+    href: "#",
+    category: { name: "Step 1", href: "#" },
+    description: " Gather Items ",
+    date: "",
+    datetime: "",
     imageUrl:
-      'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80',
-    readingTime: '',
+      "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
+    readingTime: "",
     author: {},
   },
   {
-    title: '',
-    href: '#',
-    category: { name: 'Step 2', href: '#' },
-    description:
-      ' Pack box & Take pic of items to create barcode ',
-      date: '',
-      datetime: '',
+    title: "",
+    href: "#",
+    category: { name: "Step 2", href: "#" },
+    description: " Pack box & Take pic of items to create barcode ",
+    date: "",
+    datetime: "",
     imageUrl:
-      'https://images.unsplash.com/photo-1547586696-ea22b4d4235d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80',
-      readingTime: '',
-      author: {},
+      "https://images.unsplash.com/photo-1547586696-ea22b4d4235d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
+    readingTime: "",
+    author: {},
   },
   {
-    title: '',
-    href: '#',
-    category: { name: 'Step 3', href: '#' },
-    description:
-      ' Save barcode',
-      date: '',
-      datetime: '',
+    title: "",
+    href: "#",
+    category: { name: "Step 3", href: "#" },
+    description: " Save barcode",
+    date: "",
+    datetime: "",
     imageUrl:
-      'https://images.unsplash.com/photo-1492724441997-5dc865305da7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80',
-      readingTime: '',
-      author: {},
+      "https://images.unsplash.com/photo-1492724441997-5dc865305da7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
+    readingTime: "",
+    author: {},
   },
-]
+];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -133,12 +130,8 @@ const Index = () => {
             <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
               <div className="flex justify-start lg:w-0 lg:flex-1">
                 <a href="#">
-                  <span className="sr-only">Workflow</span>
-                  <img
-                    className="h-8 w-auto sm:h-10"
-                    src={logoImg}
-                    alt=""
-                  />
+                  <span className="sr-only">BoxIt</span>
+                  <img className="h-8 w-auto sm:h-10" src={logoImg} alt="" />
                 </a>
               </div>
               <div className="-mr-2 -my-2 md:hidden">
@@ -167,21 +160,20 @@ const Index = () => {
                         />
                       </Popover.Button>
 
-                  <Popover.Button
+                      <Popover.Button
                         className={classNames(
                           open ? "text-gray-900" : "text-gray-500",
                           "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         )}
                       >
                         <div>
-                  <a
-                    href="/dashboard"
-                    className="w-full flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-sm text-grey-400 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10"
-                  >
-                    Dashboard
-                  </a>
-                </div>
-                        
+                          <a
+                            href="/dashboard"
+                            className="w-full flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-sm text-grey-400 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10"
+                          >
+                            Dashboard
+                          </a>
+                        </div>
                       </Popover.Button>
 
                       <Transition
@@ -229,8 +221,6 @@ const Index = () => {
                     </>
                   )}
                 </Popover>
-
-                
 
                 {/* <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
                   Pricing
@@ -348,8 +338,8 @@ const Index = () => {
                     <div>
                       <img
                         className="h-8 w-auto"
-                        // src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                        alt="Workflow"
+                        // src="/assets/img/Logo.png"
+                        alt="BoxIt"
                       />
                     </div>
                     <div className="-mr-2">
@@ -444,11 +434,7 @@ const Index = () => {
             </div>
           </div>
           <div className="relative w-full h-64 sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:h-full">
-            <img
-              className="absolute inset-0 w-full h-full object-cover object-top"
-              src={heroImg}
-              alt=""
-            />
+            <img className="absolute inset-0 w-full h-full object-cover object-top" src={heroImg} alt="" />
           </div>
         </main>
       </div>
@@ -460,9 +446,7 @@ const Index = () => {
         <div className="relative max-w-7xl mx-auto">
           <div className="text-center">
             <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl"></h2>
-            <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
-              Instructions
-            </p>
+            <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">Instructions</p>
           </div>
           <div className="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
             {posts.map((post) => (
@@ -509,8 +493,6 @@ const Index = () => {
         </div>
       </div>
     </div>
-  
-  
   );
 };
 
