@@ -20,7 +20,7 @@ export default function Example() {
       },
     });
 
-    const token = mutationResponse.data.addUser.token;
+    const token = mutationResponse.data.login.token;
 
     Auth.login(token);
   };

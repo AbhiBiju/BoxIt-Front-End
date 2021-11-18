@@ -12,12 +12,12 @@ export default function Sidebar({ user }) {
               alt=""
             />
           </div>
-          <div className="inline-block ml-3">
+          <div className="inline-flex flex-col text-center px-2 ml-3">
             <p className="float-right pt-4 text-base font-medium text-purple-700 group-hover:text-gray-900">
-              {user.firstName + " " + user.lastName}
+              {user !== undefined ? user.firstName : ""}
             </p>
             <p className="text-sm font-medium mt-4 text-purple-700 group-hover:text-gray-700">
-              {"Date: "}
+              {"Date: " + new Date()}
             </p>
           </div>
           <div className="ml-3">

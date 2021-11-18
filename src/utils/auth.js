@@ -24,7 +24,6 @@ class AuthService {
 
   getToken() {
     // Retrieves the user token from localStorage
-    console.log(localStorage);
     return localStorage.getItem("id_token");
   }
 
@@ -32,7 +31,11 @@ class AuthService {
     // Saves user token to localStorage
     localStorage.setItem("id_token", idToken);
 
-    window.location.assign("/");
+    if (window.location.pathname === "/login") {
+      window.location.assign("/profile");
+    } else {
+      window.location.assign("/");
+    }
   }
 
   logout() {

@@ -33,6 +33,8 @@
     "postcss": "^8.2.8",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-qr-code": "^2.0.3",
+    "react-to-print": "^2.14.0",
     "react-tooltip": "^4.2.21",
     "tailwindcss": "^2.0.3"
   }

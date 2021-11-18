@@ -1,7 +1,10 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon, ChevronDownIcon } from "@heroicons/react/outline";
+
+import QRCode from "react-qr-code";
+import ReactToPrint from "react-to-print";
 
 import { Dropzone, FileItem, FullScreenPreview } from "@dropzone-ui/react";
 import dynamic from "next/dynamic";
@@ -88,6 +91,7 @@ export default function CreateBox() {
   });
 
   const [submit, setSubmit] = useState(false);
+  const [boxId, setBoxId] = useState("");
 
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -109,7 +113,7 @@ export default function CreateBox() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let test = [];
-    if (formState.images[0].file) {
+    if (formState.images[0].file !== undefined) {
       const url = "https://api.cloudinary.com/v1_1/dxqvdgvul/image/upload";
       let urlArr = [];
 
@@ -145,6 +149,7 @@ export default function CreateBox() {
     });
 
     if (boxData.data) {
+      setBoxId(boxData.data.addBox._id);
       setSubmit(true);
     }
 
@@ -200,9 +205,51 @@ export default function CreateBox() {
     }
   };
 
+  const handleClose = () => {
+    setSubmit(false);
+  };
+
+  let componentRef = useRef();
+
+  const printQR = () => {
+
+  }
+
   return (
     <>
-      <div className="h-screen flex">
+      <div className="h-screen relative flex">
+        {submit && (
+          <div className="bg-gray-800 bg-opacity-50 fixed z-50 right-0 left-0 bottom-0 top-0 flex justify-center items-center">
+            <div className="bg-blue-500 py-4 text-2xl w-1/2 h-2/3 rounded-lg mx-auto text-center flex-col justify-center items-center">
+              <p>Box Uploaded!</p>
+              <button
+                className="text-green-500 font-black cursor-pointer hover:text-green-500"
+                onClick={handleClose}
+                // href={"/box/" + boxId}
+              >
+                Close Modal
+              </button>
+              <div ref={(el) => (componentRef = el)}>
+                <QRCode
+                  className="mx-auto border-4 border-gray-500"
+                  value={"https://box-it-app.netlify.app//box/" + boxId}
+                />
+              </div>
+              <ReactToPrint
+                trigger={() => (
+                  <button className="text-green-500 bg-white rounded-lg mt-3 text-center px-3 py-2 w-56">
+                    Print your QRCode!
+                  </button>
+                )}
+                content={() => componentRef}
+              />
+
+              <a className="text-green-500 mx-auto block bg-white rounded-lg text-center my-5 px-3 py-2 w-56" href="/profile">
+                View profile
+              </a>
+            </div>
+          </div>
+        )}
         {/* Sidebar for smaller screens*/}
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="fixed inset-0 flex z-40 lg:hidden" onClose={setSidebarOpen}>

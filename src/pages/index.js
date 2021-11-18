@@ -131,7 +131,7 @@ const Index = () => {
               <div className="flex justify-start lg:w-0 lg:flex-1">
                 <a href="#">
                   <span className="sr-only">BoxIt</span>
-                  <img className="h-8 w-auto sm:h-10" src={logoImg} alt="" />
+                  <img className="h-14 w-auto sm:h-16" src={logoImg} alt="" />
                 </a>
               </div>
               <div className="-mr-2 -my-2 md:hidden">
@@ -168,10 +168,10 @@ const Index = () => {
                       >
                         <div>
                           <a
-                            href="/dashboard"
+                            href="/profile"
                             className="w-full flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-sm text-grey-400 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10"
                           >
-                            Dashboard
+                            Profile
                           </a>
                         </div>
                       </Popover.Button>
@@ -229,7 +229,7 @@ const Index = () => {
                   Docs
                 </a> */}
 
-                <Popover className="relative">
+                <Popover className="relative mt-5">
                   {({ open }) => (
                     <>
                       <Popover.Button
@@ -242,7 +242,7 @@ const Index = () => {
                         <ChevronDownIcon
                           className={classNames(
                             open ? "text-gray-600" : "text-gray-400",
-                            "ml-2 h-5  mb-10 group-hover:text-gray-500"
+                            "ml-2 h-5 group-hover:text-gray-500"
                           )}
                           aria-hidden="true"
                         />

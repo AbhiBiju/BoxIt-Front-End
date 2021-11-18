@@ -81,15 +81,15 @@ export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const [boxes, setBoxes] = useState([]);
-  const user = auth.getProfile();
-  const [id, setId] = useState("");
+  const [user, setUser] = useState({});
   const [getUserBoxes, { data, loading }] = useLazyQuery(QUERY_BOXES);
 
   const handleClick = () => {
-    let userId = user.data._id;
-    setId(userId);
+    const user = auth.getProfile();
+    setUser(user);
 
-    getUserBoxes({ variables: { userId: id } });
+    console.log(user);
+    getUserBoxes({ variables: { userId: user.data._id } });
     if (data) {
       setBoxes(data.getUserBoxes);
     }
@@ -98,7 +98,7 @@ export default function Example() {
   return (
     <div className="bg-white h-full w-full grid grid-cols-10">
       <div className="float-left mr-5 col-span-2 h-full hidden lg:flex lg:flex-shrink-0">
-        <Sidebar user={user} />
+        <Sidebar user={user.data} />
       </div>
       {/* Mobile menu */}
       <Transition.Root show={mobileMenuOpen} as={Fragment}>
@@ -330,17 +330,17 @@ export default function Example() {
                       {
                         <h3 className="text-md font-medium text-gray-900">
                           <a href={"/box/" + box._id}>{box.name}</a>
-                          <p>{box.packingDate}</p>
+                          <p>{new Date(box.packingDate)}</p>
                         </h3>
                       }
                       <p className="text-md text-gray-500 truncate">
-                        <span>{box.description}</span>{" "}
+                        <span>Box Info: {box.description}</span>{" "}
                         <span className="mx-1 text-gray-400" aria-hidden="true">
                           &middot;
                         </span>{" "}
                         <span>{box.isFragile === true ? "Fragile Box" : ""}</span>
                       </p>
-                      <p className="mt-1 font-medium text-gray-900">{box.price}</p>
+                      <p className="mt-1 font-medium text-gray-900">Price: $ {box.price}</p>
                     </div>
                   </div>
                   <div className="mt-6 space-y-4 mx-5 sm:mt-0 sm:ml-6 sm:flex-none sm:w-40">
@@ -363,42 +363,14 @@ export default function Example() {
               </div>
             ))}
           {(loading || !boxes.length) && (
-            <div className="">
-              <div className="flow-root">
-                <div className="py-0 sm:flex">
-                  <div className="flex space-x-4 sm:min-w-0 sm:flex-1 sm:space-x-6 lg:space-x-8">
-                    <div className="grid grid-cols-2 grid-rows-2 gap-4">
-                      <div className="flex-none w16 h-16 transform hover:scale-105 transition duration-200 rounded-md object-center object-cover bg-gray-400"></div>
-                    </div>
-                    <div className="pt-1.5 min-w-0 flex-1 sm:pt-0">
-                      <h3 className="text-md font-medium text-gray-900">
-                        <a href={"/profile"} className="bg-gray-400 rounded-lg h-2"></a>
-                        <p className="bg-gray-400 rounded-lg h-2"></p>
-                      </h3>
-                      <p className="text-md text-gray-500 truncate">
-                        <span className="bg-gray-400 rounded-lg h-2"></span>{" "}
-                        <span className="mx-1 text-gray-400" aria-hidden="true">
-                          &middot;
-                        </span>{" "}
-                        <span className="bg-gray-400 rounded-lg h-2"></span>
-                      </p>
-                      <p className="mt-1 font-medium text-gray-900"></p>
-                    </div>
-                  </div>
-                  <div className="mt-6 space-y-4 mx-5 sm:mt-0 sm:ml-6 sm:flex-none sm:w-40">
-                    <button
-                      type="button"
-                      className="w-full mb-5 flex items-center justify-center bg-purple-400 py-2 px-2.5 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-full sm:flex-grow-0"
-                    ></button>
-                    <a href={"/profile"}>
-                      <button
-                        type="button"
-                        className="w-full flex items-center justify-center bg-green-400 py-2 px-2.5 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-full sm:flex-grow-0"
-                      ></button>
-                    </a>
-                  </div>
+            <div className="text-center my-10 text-xl font-black">
+              No Boxes Found
+              <a className="" href="/create-box">
+                <div className="text-black hover:text-green-500 transform my-5 px-5 py-2 hover:scale-105 bg-green-400 hover:bg-white border rounded-lg mx-auto border-gray-400 w-40 transition hover:uppercase duration-200">
+                  Click Here
                 </div>
-              </div>
+              </a>
+              To create a box
             </div>
           )}
         </div>
