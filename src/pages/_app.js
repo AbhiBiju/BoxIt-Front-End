@@ -4,8 +4,10 @@ import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@ap
 import { setContext } from "@apollo/client/link/context";
 
 const httpLink = createHttpLink({
-  uri: "https://box-it-backend.herokuapp.com/graphql" || "http://localhost:3000/graphql",
+  uri: "http://localhost:3000/graphql",
 });
+/* Dont Forget to add this back in to start of uri after testing */
+/* "https://box-it-backend.herokuapp.com/graphql" || */
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("id_token");

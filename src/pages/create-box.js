@@ -140,7 +140,7 @@ export default function CreateBox() {
         isMoving: formState.isMoving,
         isFragile: formState.isFragile,
         price: formState.price,
-        userId: formState.userId
+        userId: formState.userId,
       },
     });
 
@@ -249,11 +249,7 @@ export default function CreateBox() {
                 </Transition.Child>
                 <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                   <div className="flex-shrink-0 flex items-center px-4">
-                    <img
-                      className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-900-text.svg"
-                      alt="Workflow"
-                    />
+                    <img className="h-8 w-auto" src="/assets/img/Logo.png" alt="BoxIt" />
                   </div>
                   <div className="justify-center mt-4 flex">
                     <button
@@ -340,12 +336,11 @@ export default function CreateBox() {
             {/* Sidebar component, swap this element with another sidebar if you like */}
             <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-gray-100">
               <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-                <div className="flex items-center flex-shrink-0 px-4">
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-900-text.svg"
-                    alt="Workflow"
-                  />
+                <div className="flex-col text-center items-center flex-shrink-0 px-4">
+                  <a href="/">
+                    <img className="h-16 mx-auto w-auto" src="/assets/img/Logo.png" alt="BoxIt" />
+                    Box It
+                  </a>
                 </div>
                 <div className="text-center mx-auto mt-4 flex">
                   <button
@@ -408,11 +403,7 @@ export default function CreateBox() {
           <div className="lg:hidden">
             <div className="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
               <div>
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                  alt="Workflow"
-                />
+                <img className="h-8 w-auto" src="/assets/img/Logo.png" alt="BoxIt" />
               </div>
               <div>
                 <button
